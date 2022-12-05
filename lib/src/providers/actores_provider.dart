@@ -87,6 +87,15 @@ class ActoresProvider {
     final resp = await http.get(url);
     final decodedData = json.decode(resp.body);
 
+    if (decodedData == "") {
+      if (decodedData['gender'] == 1) {
+        return decodedData['biography'] =
+            "No hi ha informació de aquesta actriu";
+      } else if (decodedData['gender'] == 2) {
+        return decodedData['biography'] = "No hi ha informació de aquest actor";
+      }
+      return decodedData['biography'];
+    }
     return decodedData['biography'];
   }
 
